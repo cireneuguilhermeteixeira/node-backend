@@ -1,0 +1,14 @@
+replicaCount: 2
+namespace: app
+
+image:
+  repository: localhost:30500/backend
+  tag: 1
+  pullPolicy: IfNotPresent
+
+service:
+  type: NodePort
+  port: 3000
+  nodePort: 30003
+
+containerPort: 3000
