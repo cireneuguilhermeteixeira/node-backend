@@ -59,7 +59,7 @@ app.get('/metrics', async (req, res) => {
   }
 });
 
-app.get('/healthh', (req, res) => {
+app.get('/health', (req, res) => { // Changed '/healthh' to '/health'
   const buildNumber = process.env.BUILD_NUMBER || 'dev';
   res.status(200).json({
     status: 'OK',
@@ -71,7 +71,6 @@ app.get('/healthh', (req, res) => {
 app.get('/', (req, res) => {
   res.send('Hello Buddy!');
 });
-
 
 // Get all books
 app.get('/books', (req, res) => {
@@ -122,7 +121,6 @@ app.delete('/books/:id', (req, res) => {
   books.splice(index, 1);
   res.status(204).send({ message: "Book deleted" });
 });
-
 
 // Only start the server if this file is run directly
 if (require.main === module) {
