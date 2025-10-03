@@ -59,7 +59,7 @@ app.get('/metrics', async (req, res) => {
   }
 });
 
-app.get('/healthh', (req, res) => {
+app.get('/health', (req, res) => { // Fixed route
   const buildNumber = process.env.BUILD_NUMBER || 'dev';
   res.status(200).json({
     status: 'OK',
@@ -72,10 +72,9 @@ app.get('/', (req, res) => {
   res.send('Hello Buddy!');
 });
 
-
 // Get all books
 app.get('/books', (req, res) => {
-  res.json({ books });
+  res.json(books); // Changed to return books directly
 });
 
 // Get a book by id
@@ -85,7 +84,7 @@ app.get('/books/:id', (req, res) => {
   if (!book) {
     return res.status(404).json({ error: 'Book not found' });
   }
-  res.json({ book });
+  res.json(book); // Changed to return book directly
 });
 
 // Create a new book
@@ -96,7 +95,7 @@ app.post('/books', (req, res) => {
   }
   const book = { id: nextId++, title, author };
   books.push(book);
-  res.status(201).json({ bookCreated: book });
+  res.status(201).json(book); // Changed to return book directly
 });
 
 // Update a book
@@ -109,7 +108,7 @@ app.put('/books/:id', (req, res) => {
   const { title, author } = req.body;
   if (title !== undefined) book.title = title;
   if (author !== undefined) book.author = author;
-  res.json({ bookUpdated: book });
+  res.json(book); // Changed to return book directly
 });
 
 // Delete a book
@@ -122,7 +121,6 @@ app.delete('/books/:id', (req, res) => {
   books.splice(index, 1);
   res.status(204).send({ message: "Book deleted" });
 });
-
 
 // Only start the server if this file is run directly
 if (require.main === module) {
