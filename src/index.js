@@ -75,7 +75,7 @@ app.get('/', (req, res) => {
 
 // Get all books
 app.get('/books', (req, res) => {
-  res.json({ books });
+  res.json(books);
 });
 
 // Get a book by id
@@ -85,7 +85,7 @@ app.get('/books/:id', (req, res) => {
   if (!book) {
     return res.status(404).json({ error: 'Book not found' });
   }
-  res.json({ book });
+  res.json(book);
 });
 
 // Create a new book
@@ -96,7 +96,7 @@ app.post('/books', (req, res) => {
   }
   const book = { id: nextId++, title, author };
   books.push(book);
-  res.status(201).json({ bookCreated: book });
+  res.status(201).json(book);
 });
 
 // Update a book
@@ -109,7 +109,7 @@ app.put('/books/:id', (req, res) => {
   const { title, author } = req.body;
   if (title !== undefined) book.title = title;
   if (author !== undefined) book.author = author;
-  res.json({ bookUpdated: book });
+  res.json(book);
 });
 
 // Delete a book
