@@ -5,7 +5,7 @@ describe('Books API', () => {
   it('should return empty list initially', async () => {
     const res = await request(app).get('/books');
     expect(res.statusCode).toBe(200);
-    expect(res.body).toEqual([]);
+    expect(res.body).toEqual([]); // This expects an array directly
   });
 
   it('should create a book', async () => {
